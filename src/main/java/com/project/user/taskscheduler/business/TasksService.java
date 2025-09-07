@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -21,15 +22,29 @@ public class TasksService {
     private final JwtUtil jwtUtil;
 
 
-    public TasksDTO recordTask(String token, TasksDTO dto) {
+    public TasksDTO gravarTarefa(String token, TasksDTO dto) {
         String email = jwtUtil.extrairEmailToken(token.substring(7));
         dto.setDataCriacao(LocalDateTime.now());
-        dto.setStatusNotificaoEnum(StatusNotificationEnum.PENDENTE);
-        dto.setEmailUsuairio(email);
-        TasksEntity entity = tasksConverter.paraTarefaEntity(dto);
+        dto.setStatusNotificacaoEnum(StatusNotificationEnum.PENDENTE);
+        dto.setEmailUsuario(email);
+        TasksEntity entity = tasksConverter.paraListaEntity(dto);
 
-        return tasksConverter.paraTarefaDTO(
+        return tasksConverter.paraListaDTO(
         tasksRepository.save(entity));
+    }
+
+    public List<TasksDTO> buscaTarefaAgendadaPorPeriodo(LocalDateTime dataInicial, LocalDateTime dataFinal) {
+        return tasksConverter.paraListaTarefaDTO(
+                tasksRepository.findByDataEventoBetween(dataInicial, dataFinal));
+
+    }
+
+    public List<TasksDTO> buscaTarefasPorEmail(String token) {
+
+        String email = jwtUtil.extrairEmailToken(token.substring(7));
+        List<TasksEntity> listaTarefas = tasksRepository.findByEmailUsuario(email);
+
+        return tasksConverter.paraListaTarefaDTO(listaTarefas);
     }
 
 }

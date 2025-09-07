@@ -23,8 +23,8 @@ public class TasksEntity {
     private String descricao;
     private LocalDateTime dataCriacao;
     private LocalDateTime dataEvento;
-    private String emailUsuairio;
+    private String emailUsuario;
     private LocalDateTime dataAlteracao;
-    private StatusNotificationEnum statusNotificaoEnum;
+    private StatusNotificationEnum statusNotificacaoEnum;
 
 }

@@ -1,0 +1,30 @@
+package com.project.user.taskscheduler.infrastructure.entity;
+
+
+import com.project.user.taskscheduler.infrastructure.enums.StatusNotificationEnum;
+import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.time.LocalDateTime;
+
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+
+@Document ("tarefa")
+public class TasksEntity {
+
+    @Id
+    private String id;
+    private String nomeTarefa;
+    private String descricao;
+    private LocalDateTime dataCriacao;
+    private LocalDateTime dataEvento;
+    private String emailUsuairio;
+    private LocalDateTime dataAlteracao;
+    private StatusNotificationEnum statusNotificaoEnum;
+
+}

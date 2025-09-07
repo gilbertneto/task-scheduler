@@ -2,15 +2,13 @@ package com.project.user.taskscheduler.business.dto;
 
 import lombok.*;
 
-import java.util.List;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 
-public class UsuarioDTO {
+public class UserDTO {
 
     private String email;
     private String senha;

@@ -1,8 +1,7 @@
 package com.project.user.taskscheduler.infrastructure.client;
 
-import com.project.user.taskscheduler.business.dto.UsuarioDTO;
+import com.project.user.taskscheduler.business.dto.UserDTO;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface UsuarioClient {
 
     @GetMapping("/usuario")
-    UsuarioDTO buscaUsuarioPorEmail(@RequestParam("email") String email,
-                                    @RequestHeader("Authorization") String token);
+    UserDTO buscaUsuarioPorEmail(@RequestParam("email") String email,
+                                 @RequestHeader("Authorization") String token);
 
 }

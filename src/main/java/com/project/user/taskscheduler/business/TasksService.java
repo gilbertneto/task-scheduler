@@ -1,9 +1,11 @@
 package com.project.user.taskscheduler.business;
 
 import com.project.user.taskscheduler.business.dto.TasksDTO;
+import com.project.user.taskscheduler.business.mapper.TaskUpdateConverter;
 import com.project.user.taskscheduler.business.mapper.TasksConverter;
 import com.project.user.taskscheduler.infrastructure.entity.TasksEntity;
 import com.project.user.taskscheduler.infrastructure.enums.StatusNotificationEnum;
+import com.project.user.taskscheduler.infrastructure.exceptions.ResourceNotFoundException;
 import com.project.user.taskscheduler.infrastructure.repository.TasksRepository;
 import com.project.user.taskscheduler.infrastructure.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +22,7 @@ public class TasksService {
     private final TasksRepository tasksRepository;
     private final TasksConverter tasksConverter;
     private final JwtUtil jwtUtil;
+    private final TaskUpdateConverter taskUpdateConverter;
 
 
     public TasksDTO gravarTarefa(String token, TasksDTO dto) {
@@ -27,10 +30,10 @@ public class TasksService {
         dto.setDataCriacao(LocalDateTime.now());
         dto.setStatusNotificacaoEnum(StatusNotificationEnum.PENDENTE);
         dto.setEmailUsuario(email);
-        TasksEntity entity = tasksConverter.paraListaEntity(dto);
+        TasksEntity entity = tasksConverter.paraTarefaEntity(dto);
 
-        return tasksConverter.paraListaDTO(
-        tasksRepository.save(entity));
+        return tasksConverter.paraTarefaDTO(
+                tasksRepository.save(entity));
     }
 
     public List<TasksDTO> buscaTarefaAgendadaPorPeriodo(LocalDateTime dataInicial, LocalDateTime dataFinal) {
@@ -47,4 +50,37 @@ public class TasksService {
         return tasksConverter.paraListaTarefaDTO(listaTarefas);
     }
 
+    public void deletaTarefaPorId(String id) {
+        try {
+            tasksRepository.deleteById(id);
+        } catch (ResourceNotFoundException e) {
+            throw new ResourceNotFoundException("Erro ao deletar tarefa por ID, ID inexistente " + id,
+                    e.getCause());
+
+        }
+    }
+
+    public TasksDTO alteraStatus(StatusNotificationEnum status, String id) {
+        try {
+            TasksEntity entity = tasksRepository.findById(id).
+                    orElseThrow(() -> new ResourceNotFoundException("Tarefa não encontrada " + id));
+            entity.setStatusNotificacaoEnum(status);
+            return tasksConverter.paraTarefaDTO(tasksRepository.save(entity));
+        } catch (ResourceNotFoundException e) {
+            throw new ResourceNotFoundException("Erro ao alterar o status da tarefa "
+                    + e.getCause());
+        }
+    }
+
+    public TasksDTO updateTarefas(TasksDTO dto, String id) {
+        try {
+            TasksEntity entity = tasksRepository.findById(id).
+                    orElseThrow(() -> new ResourceNotFoundException("Tarefa não encontrada " + id));
+        taskUpdateConverter.updateTarefas(dto, entity);
+        return tasksConverter.paraTarefaDTO(tasksRepository.save(entity));
+        } catch (ResourceNotFoundException e) {
+            throw new ResourceNotFoundException("Erro ao alterar o status da tarefa "
+                    + e.getCause());
+        }
+    }
 }

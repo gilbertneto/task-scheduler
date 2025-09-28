@@ -25,6 +25,6 @@ public class TasksEntity {
     private LocalDateTime dataEvento;
     private String emailUsuario;
     private LocalDateTime dataAlteracao;
-    private StatusNotificationEnum statusNotificacaoEnum;
+    private StatusNotificationEnum statusNotificationEnum;
 
 }

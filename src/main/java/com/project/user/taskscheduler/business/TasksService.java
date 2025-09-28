@@ -28,7 +28,7 @@ public class TasksService {
     public TasksDTO gravarTarefa(String token, TasksDTO dto) {
         String email = jwtUtil.extrairEmailToken(token.substring(7));
         dto.setDataCriacao(LocalDateTime.now());
-        dto.setStatusNotificacaoEnum(StatusNotificationEnum.PENDENTE);
+        dto.setStatusNotificationEnum(StatusNotificationEnum.PENDENTE);
         dto.setEmailUsuario(email);
         TasksEntity entity = tasksConverter.paraTarefaEntity(dto);
 
@@ -38,7 +38,8 @@ public class TasksService {
 
     public List<TasksDTO> buscaTarefaAgendadaPorPeriodo(LocalDateTime dataInicial, LocalDateTime dataFinal) {
         return tasksConverter.paraListaTarefaDTO(
-                tasksRepository.findByDataEventoBetween(dataInicial, dataFinal));
+                tasksRepository.findByDataEventoBetweenAndStatusNotificationEnum(dataInicial, dataFinal,
+                        StatusNotificationEnum.PENDENTE));
 
     }
 
@@ -64,7 +65,7 @@ public class TasksService {
         try {
             TasksEntity entity = tasksRepository.findById(id).
                     orElseThrow(() -> new ResourceNotFoundException("Tarefa não encontrada " + id));
-            entity.setStatusNotificacaoEnum(status);
+            entity.setStatusNotificationEnum(status);
             return tasksConverter.paraTarefaDTO(tasksRepository.save(entity));
         } catch (ResourceNotFoundException e) {
             throw new ResourceNotFoundException("Erro ao alterar o status da tarefa "

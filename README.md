@@ -75,3 +75,9 @@ O repositório possui pipeline configurada em `.github/workflows`, executando bu
 - [ ] Adicionar exemplos de payload de criação/agendamento de tarefas
 - [ ] Adicionar Dockerfile e instruções de execução via container
 - [ ] Avaliar uso de mensageria assíncrona (ex.: RabbitMQ/Kafka) para desacoplar chamadas ao serviço de notificação
+
+## Ecossistema Relacionado 
+
+- https://github.com/gilbertneto/user
+- https://github.com/gilbertneto/notification	
+- https://github.com/gilbertneto/bff-task-scheduler

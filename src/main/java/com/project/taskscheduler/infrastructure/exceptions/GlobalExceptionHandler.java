@@ -1,4 +1,4 @@
-package com.project.user.taskscheduler.infrastructure.exceptions;
+package com.project.taskscheduler.infrastructure.exceptions;
 
 
 import org.springframework.http.HttpStatus;
@@ -17,6 +17,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(UnauthorizedException.class)
     public ResponseEntity<String> handleUnauthorizedException(UnauthorizedException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(ConflictException.class)
+    public ResponseEntity<String> handleConflictException(ConflictException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
     }
 
 }

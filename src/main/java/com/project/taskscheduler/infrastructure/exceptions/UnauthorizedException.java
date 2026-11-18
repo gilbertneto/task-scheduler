@@ -1,4 +1,4 @@
-package com.project.user.taskscheduler.infrastructure.exceptions;
+package com.project.taskscheduler.infrastructure.exceptions;
 
 import javax.naming.AuthenticationException;
 

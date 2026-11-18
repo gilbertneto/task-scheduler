@@ -1,7 +1,7 @@
-package com.project.user.taskscheduler.infrastructure.entity;
+package com.project.taskscheduler.infrastructure.entity;
 
 
-import com.project.user.taskscheduler.infrastructure.enums.StatusNotificationEnum;
+import com.project.taskscheduler.infrastructure.enums.StatusNotificationEnum;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;

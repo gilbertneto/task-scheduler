@@ -1,12 +1,15 @@
-package com.project.user.taskscheduler.controller;
+package com.project.taskscheduler.controller;
 
 
-import com.project.user.taskscheduler.business.TasksService;
-import com.project.user.taskscheduler.business.dto.TasksDTO;
-import com.project.user.taskscheduler.infrastructure.enums.StatusNotificationEnum;
+import com.project.taskscheduler.business.TasksService;
+import com.project.taskscheduler.business.dto.TasksDTO;
+import com.project.taskscheduler.infrastructure.enums.StatusNotificationEnum;
+import com.project.taskscheduler.infrastructure.exceptions.UnauthorizedException;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -42,10 +45,11 @@ public class TasksController {
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> deletaTarefaPorId(@RequestParam("id") String id) {
-        tasksService.deletaTarefaPorId(id);
+    public ResponseEntity<TasksDTO> cancelarTarefaPorId(@RequestParam("id") String id,
+                                                  @RequestHeader("Authorization") String token) throws UnauthorizedException {
+        tasksService.cancelarTarefaPorId(id, token);
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(tasksService.cancelarTarefaPorId(id, token));
     }
 
     @PatchMapping
@@ -56,7 +60,8 @@ public class TasksController {
     }
 
     @PutMapping
-    public ResponseEntity<TasksDTO> updateTarefas(@RequestBody TasksDTO dto, @RequestParam("id") String id){
-        return ResponseEntity.ok(tasksService.updateTarefas(dto, id));
+    public ResponseEntity<TasksDTO> updateTarefas(@Valid @RequestBody TasksDTO dto, @RequestParam("id") String id,
+                                                  @RequestHeader("Authorization") String token) throws UnauthorizedException {
+        return ResponseEntity.ok(tasksService.updateTarefas(dto, id, token));
     }
 }

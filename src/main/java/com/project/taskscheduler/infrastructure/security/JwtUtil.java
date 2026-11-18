@@ -1,4 +1,4 @@
-package com.project.user.taskscheduler.infrastructure.security;
+package com.project.taskscheduler.infrastructure.security;
 
 
 import io.jsonwebtoken.Claims;

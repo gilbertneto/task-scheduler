@@ -1,4 +1,4 @@
-package com.project.user.taskscheduler;
+package com.project.taskscheduler;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

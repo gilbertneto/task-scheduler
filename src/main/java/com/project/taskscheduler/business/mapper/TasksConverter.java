@@ -1,7 +1,7 @@
-package com.project.user.taskscheduler.business.mapper;
+package com.project.taskscheduler.business.mapper;
 
-import com.project.user.taskscheduler.business.dto.TasksDTO;
-import com.project.user.taskscheduler.infrastructure.entity.TasksEntity;
+import com.project.taskscheduler.business.dto.TasksDTO;
+import com.project.taskscheduler.infrastructure.entity.TasksEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

@@ -1,4 +1,4 @@
-package com.project.user.taskscheduler.infrastructure.enums;
+package com.project.taskscheduler.infrastructure.enums;
 
 public enum StatusNotificationEnum {
     PENDENTE, NOTIFICADO, CANCELADO

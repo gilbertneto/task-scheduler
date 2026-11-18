@@ -1,7 +1,7 @@
-package com.project.user.taskscheduler.business.dto;
+package com.project.taskscheduler.business.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.project.user.taskscheduler.infrastructure.enums.StatusNotificationEnum;
+import com.project.taskscheduler.infrastructure.enums.StatusNotificationEnum;
 import lombok.*;
 
 import java.time.LocalDateTime;

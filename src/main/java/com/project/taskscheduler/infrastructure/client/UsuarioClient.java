@@ -1,6 +1,6 @@
-package com.project.user.taskscheduler.infrastructure.client;
+package com.project.taskscheduler.infrastructure.client;
 
-import com.project.user.taskscheduler.business.dto.UserDTO;
+import com.project.taskscheduler.business.dto.UserDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;

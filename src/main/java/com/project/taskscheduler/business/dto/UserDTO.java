@@ -1,4 +1,4 @@
-package com.project.user.taskscheduler.business.dto;
+package com.project.taskscheduler.business.dto;
 
 import lombok.*;
 

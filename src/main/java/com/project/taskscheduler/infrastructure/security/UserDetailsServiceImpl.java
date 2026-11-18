@@ -1,7 +1,7 @@
-package com.project.user.taskscheduler.infrastructure.security;
+package com.project.taskscheduler.infrastructure.security;
 
-import com.project.user.taskscheduler.business.dto.UserDTO;
-import com.project.user.taskscheduler.infrastructure.client.UsuarioClient;
+import com.project.taskscheduler.business.dto.UserDTO;
+import com.project.taskscheduler.infrastructure.client.UsuarioClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

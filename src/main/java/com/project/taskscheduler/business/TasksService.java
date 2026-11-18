@@ -50,7 +50,7 @@ public class TasksService {
 
         if (tasksRepository.existsByDataEventoAndStatusNotificationEnumIn(
                 horarioNormalizado, STATUS_QUE_OCUPAM_HORARIO)) {
-            throw new ConflictException("O horário" + horarioNormalizado + "já está reservado por outro usuário.");
+            throw new ConflictException("O horário " + horarioNormalizado + " já se encontra reservado.");
         }
 
         dto.setDataCriacao(LocalDateTime.now());

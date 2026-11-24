@@ -1,6 +1,5 @@
 package com.project.taskscheduler.business;
 
-import com.mongodb.DuplicateKeyException;
 import com.project.taskscheduler.business.dto.TasksDTO;
 import com.project.taskscheduler.business.mapper.TaskUpdateConverter;
 import com.project.taskscheduler.business.mapper.TasksConverter;
@@ -13,6 +12,7 @@ import com.project.taskscheduler.infrastructure.exceptions.UnauthorizedException
 import com.project.taskscheduler.infrastructure.repository.TasksRepository;
 import com.project.taskscheduler.infrastructure.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
